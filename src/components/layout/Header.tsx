@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import Link from "next/link"; // Keeping for Logo home link if we want specific behavior, else replace too?
+import { TransitionLink } from "../ui/TransitionLink";
 import { useState, useEffect } from "react";
 import { Button } from "../ui/Button";
 import { Logo } from "../ui/Logo";
@@ -35,25 +36,25 @@ export function Header() {
             )}
         >
             <div className="container mx-auto px-4 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2 group">
+                <TransitionLink href="/" className="flex items-center gap-2 group">
                     <div className="w-10 h-10 transition-transform group-hover:scale-110">
                         <Logo />
                     </div>
                     <span className="text-2xl font-bold tracking-tighter text-white">
                         GK<span className="text-gk-accent">-8</span>
                     </span>
-                </Link>
+                </TransitionLink>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => (
-                        <Link
+                        <TransitionLink
                             key={link.href}
                             href={link.href}
                             className="text-sm font-medium text-gk-metal-light hover:text-white transition-colors"
                         >
                             {link.label}
-                        </Link>
+                        </TransitionLink>
                     ))}
                     <Button variant="primary" size="sm" href="/contact">
                         Demander un devis
@@ -73,14 +74,14 @@ export function Header() {
             {isMobileMenuOpen && (
                 <div className="md:hidden absolute top-full left-0 right-0 bg-gk-black border-t border-white/10 p-4 flex flex-col gap-4 shadow-2xl">
                     {navLinks.map((link) => (
-                        <Link
+                        <TransitionLink
                             key={link.href}
                             href={link.href}
                             className="text-lg font-medium text-white py-2"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             {link.label}
-                        </Link>
+                        </TransitionLink>
                     ))}
                     <Button variant="primary" className="w-full" href="/contact">
                         Demander un devis

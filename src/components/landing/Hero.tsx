@@ -17,26 +17,29 @@ export function Hero() {
             <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Text Content */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     className="max-w-2xl"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gk-accent text-sm font-medium mb-6">
-                        <span className="w-2 h-2 rounded-full bg-gk-accent animate-pulse" />
-                        Santé & Sécurité Terrain
+                    <div className="inline-block px-4 py-2 bg-gk-accent/10 rounded-full border border-gk-accent/20 text-gk-accent mb-6 backdrop-blur-sm">
+                        <span className="font-semibold text-sm tracking-wide">MÉTHODE DE PRÉVENTION TMS</span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6 leading-[1.1]">
-                        8 gestes. <br />
-                        Un dos. <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-gk-white to-gk-metal-light">
-                            Une carrière.
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6 text-white tracking-tight">
+                        8 Gestes pour <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-gk-accent to-orange-400">
+                            Sauver votre Dos
                         </span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-gk-metal-light mb-8 leading-relaxed max-w-lg">
-                        Prévention TMS et protection du dos, pensée pour le terrain : courte, claire, applicable immédiatement.
+                    <div className="block lg:hidden w-32 h-32 mb-8 mx-auto sm:mx-0">
+                        <Logo className="w-full h-full opacity-90" />
+                    </div>
+
+                    <p className="text-lg text-gk-metal-light mb-8 max-w-lg leading-relaxed">
+                        La première méthode de prévention active conçue pour le terrain.
+                        Rapide. Efficace. Adoptée par les pros.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4">

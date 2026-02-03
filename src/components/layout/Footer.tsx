@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TransitionLink } from "../ui/TransitionLink";
 import { Logo } from "../ui/Logo";
 
 export function Footer() {
@@ -8,14 +9,14 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
-                        <Link href="/" className="flex items-center gap-2 mb-4 group">
+                        <TransitionLink href="/" className="flex items-center gap-2 mb-4 group">
                             <div className="w-8 h-8">
                                 <Logo />
                             </div>
                             <span className="text-2xl font-bold tracking-tighter text-white">
                                 GK<span className="text-gk-accent">-8</span>
                             </span>
-                        </Link>
+                        </TransitionLink>
                         <p className="text-gk-metal-light text-sm leading-relaxed">
                             Prévention TMS et protection du dos, pensée pour le terrain.
                             <br />
@@ -36,9 +37,9 @@ export function Footer() {
                                 { label: "Contact", href: "/contact" },
                             ].map((link) => (
                                 <li key={link.href}>
-                                    <Link href={link.href} className="text-gk-metal-light hover:text-white text-sm transition-colors">
+                                    <TransitionLink href={link.href} className="text-gk-metal-light hover:text-white text-sm transition-colors">
                                         {link.label}
-                                    </Link>
+                                    </TransitionLink>
                                 </li>
                             ))}
                         </ul>
@@ -77,7 +78,18 @@ export function Footer() {
                 </div>
 
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gk-metal-light">
-                    <p>© {new Date().getFullYear()} GK-8. Tous droits réservés.</p>
+                    <div className="flex flex-col md:flex-row items-center gap-4">
+                        <p>© {new Date().getFullYear()} GK-8. Tous droits réservés.</p>
+                        <span className="hidden md:inline text-white/10">|</span>
+                        <a
+                            href="https://shou-edition.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gk-metal-light hover:text-gk-accent transition-colors"
+                        >
+                            Déployé par SHOU Edition
+                        </a>
+                    </div>
                     <p>Conçu pour le terrain.</p>
                 </div>
             </div>

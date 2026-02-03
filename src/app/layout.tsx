@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { GlobalLoader } from "@/components/layout/GlobalLoader";
+import { TransitionProvider } from "@/context/TransitionContext";
 import { Suspense } from "react";
 
 export default function RootLayout({
@@ -27,13 +27,14 @@ export default function RootLayout({
     <html lang="fr" className="dark">
       <body className={`${inter.variable} antialiased min-h-screen bg-gk-black text-gk-white flex flex-col`}>
         <Suspense fallback={null}>
-          <GlobalLoader />
+          <TransitionProvider>
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </TransitionProvider>
         </Suspense>
-        <Header />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
       </body>
     </html>
   );

@@ -1,43 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import { Logo } from "../ui/Logo";
 import { motion, AnimatePresence } from "framer-motion";
 
-export function GlobalLoader() {
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const [isLoading, setIsLoading] = useState(true);
-    const [isFirstVisit, setIsFirstVisit] = useState(true);
+interface GlobalLoaderProps {
+    isLoading: boolean;
+}
 
-    // Initialize state based on session storage
-    useEffect(() => {
-        // Check if we've visited in this session
-        const hasVisited = sessionStorage.getItem("gk8-visited");
-        if (hasVisited) {
-            setIsFirstVisit(false);
-        } else {
-            sessionStorage.setItem("gk8-visited", "true");
-            setIsFirstVisit(true);
-        }
-    }, []);
-
-    // Trigger loader on navigation
-    useEffect(() => {
-        // Delay based on visit type
-        const delay = isFirstVisit ? 3000 : 1200;
-
-        setIsLoading(true);
-
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-            // After first load completes, subsequent ones are short
-            if (isFirstVisit) setIsFirstVisit(false);
-        }, delay);
-
-        return () => clearTimeout(timer);
-    }, [pathname, searchParams, isFirstVisit]);
+export function GlobalLoader({ isLoading }: GlobalLoaderProps) {
+    // We removed internal state logic because it is now managed by TransitionContext
 
     return (
         <AnimatePresence mode="wait">
@@ -83,7 +54,7 @@ export function GlobalLoader() {
                                 className="h-full bg-gk-accent"
                                 initial={{ width: "0%" }}
                                 animate={{ width: "100%" }}
-                                transition={{ duration: isFirstVisit ? 2.5 : 0.8, ease: "easeInOut" }}
+                                transition={{ duration: 0.8, ease: "easeInOut" }}
                             />
                         </div>
                     </motion.div>

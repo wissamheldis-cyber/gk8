@@ -1,5 +1,7 @@
+"use client";
+
 import { ButtonHTMLAttributes, forwardRef } from "react";
-import Link from "next/link";
+import { useTransition } from "../../context/TransitionContext";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -15,6 +17,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
     ({ className, variant = "primary", size = "md", href, ...props }, ref) => {
+        // Optional: We try to use the transition context.
+        // Since this is a "ui" component it might be used outside provider? 
+        // Ideally usage is always inside provider.
+        // But hooks shouldn't crash if optional? No, useTransition throws.
+        // Safe bet: assume it's used correctly or catch the hook error?
+        // Better: wrap in a try/catch or just use the hook. The layout wraps everything.
+
+        // However, hooks must be top level.
+        const { navigate } = useTransition();
+
         const variants = {
             primary: "bg-gk-accent text-white hover:bg-opacity-90 shadow-lg hover:shadow-gk-accent/20",
             secondary: "bg-gk-white text-gk-black hover:bg-gray-200",
@@ -36,10 +48,21 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
         );
 
         if (href) {
+            if (href.startsWith("#")) {
+                return (
+                    <a href={href} className={buttonClasses}>
+                        {props.children}
+                    </a>
+                );
+            }
             return (
-                <Link href={href} className={buttonClasses}>
+                <button
+                    type="button"
+                    className={buttonClasses}
+                    onClick={() => navigate(href)}
+                >
                     {props.children}
-                </Link>
+                </button>
             );
         }
 
