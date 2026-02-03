@@ -78,7 +78,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     return (
         <TransitionContext.Provider value={{ isLoading, navigate }}>
             <Suspense fallback={null}>
-                <GlobalLoader isLoading={isLoading} />
+                <GlobalLoader isLoading={isLoading} isFirstVisit={isFirstVisit} />
             </Suspense>
             {children}
         </TransitionContext.Provider>

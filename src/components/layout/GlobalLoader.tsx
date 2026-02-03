@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface GlobalLoaderProps {
     isLoading: boolean;
+    isFirstVisit?: boolean;
 }
 
-export function GlobalLoader({ isLoading }: GlobalLoaderProps) {
+export function GlobalLoader({ isLoading, isFirstVisit }: GlobalLoaderProps) {
     // We removed internal state logic because it is now managed by TransitionContext
 
     return (
@@ -15,7 +16,7 @@ export function GlobalLoader({ isLoading }: GlobalLoaderProps) {
             {isLoading && (
                 <motion.div
                     key="loader"
-                    initial={{ opacity: 0 }}
+                    initial={{ opacity: isFirstVisit ? 1 : 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
