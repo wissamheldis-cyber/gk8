@@ -57,6 +57,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
             const delay = 1000; // Standard nav delay
             const timer = setTimeout(() => {
                 setIsLoading(false);
+                setIsNavigating(false); // Unlock navigation
             }, delay);
 
             return () => clearTimeout(timer);
@@ -64,14 +65,24 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     }, [pathname, searchParams]);
 
 
+    const [isNavigating, setIsNavigating] = useState(false);
+
     const navigate = (href: string) => {
         if (href === pathname) return;
+        if (isNavigating) return; // Prevent multiple clicks/race conditions
 
+        setIsNavigating(true);
         setIsLoading(true); // Start fade in
 
         // Wait for fade in animation (approx 500-800ms) before changing route
         setTimeout(() => {
             router.push(href);
+            // We don't Reset isNavigating here, because the page transition will happen.
+            // When the new page loads, the component might remount or useEffect will trigger.
+            // Actually, if we don't reset, and navigation fails, we are stuck.
+            // But if navigation succeeds, this context (if inside layout) persists?
+            // Yes, Context persists. So we MUST reset isNavigating.
+            // We'll reset it in the useEffect that detects pathname change.
         }, 800);
     };
 

@@ -50,14 +50,16 @@ export function GlobalLoader({ isLoading, isFirstVisit }: GlobalLoaderProps) {
                         <h1 className="text-2xl font-bold tracking-widest text-white">
                             GK<span className="text-gk-accent">-8</span>
                         </h1>
-                        <div className="h-1 w-32 bg-white/10 rounded-full overflow-hidden">
-                            <motion.div
-                                className="h-full bg-gk-accent"
-                                initial={{ width: "0%" }}
-                                animate={{ width: "100%" }}
-                                transition={{ duration: 0.8, ease: "easeInOut" }}
-                            />
-                        </div>
+                        {isFirstVisit && (
+                            <div className="h-1 w-32 bg-white/10 rounded-full overflow-hidden">
+                                <motion.div
+                                    className="h-full bg-gk-accent"
+                                    initial={{ width: "0%" }}
+                                    animate={{ width: "100%" }}
+                                    transition={{ duration: 2.5, ease: "easeInOut" }}
+                                />
+                            </div>
+                        )}
                     </motion.div>
                 </motion.div>
             )}
