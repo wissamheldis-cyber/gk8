@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Button } from "../ui/Button";
+import { Logo } from "../ui/Logo";
 import { Menu, X } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -33,9 +34,6 @@ export function Header() {
                 isScrolled ? "bg-gk-black/80 backdrop-blur-md py-4 border-b border-white/5" : "bg-transparent py-6"
             )}
         >
-            import {Logo} from "../ui/Logo";
-
-            // ... inside component
             <div className="container mx-auto px-4 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 group">
                     <div className="w-10 h-10 transition-transform group-hover:scale-110">

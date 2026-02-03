@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "../ui/Button";
+import { Logo } from "../ui/Logo";
 import { motion } from "framer-motion";
 import { ArrowRight, PlayCircle } from "lucide-react";
 
@@ -55,16 +56,20 @@ export function Hero() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="relative hidden lg:block h-[600px]"
+                    className="relative hidden lg:block h-[600px] w-full"
                 >
                     {/* Conceptual 3D Spine/Force Lines */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative w-full h-full">
-                            {/* Just a placeholder for the complex 3D CSS or Spline embed */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-96 border-2 border-gk-accent/30 rounded-full rotate-12 backdrop-blur-sm" />
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-96 border border-white/10 rounded-full -rotate-6 scale-110" />
-                            <div className="absolute top-[20%] right-[20%] w-32 h-32 bg-gradient-to-br from-white/10 to-transparent rounded-xl backdrop-blur-md border border-white/10 shadow-2xl skew-y-12 animate-float" />
-                            <div className="absolute bottom-[20%] left-[20%] w-40 h-40 bg-gradient-to-tr from-gk-accent/10 to-transparent rounded-full backdrop-blur-md border border-white/5 animate-float-delayed" />
+                        <div className="relative w-[500px] h-[500px]">
+                            {/* Main Logo in 3D-like container */}
+                            <div className="absolute inset-0 animate-[spin_60s_linear_infinite]">
+                                <Logo className="w-full h-full opacity-80" />
+                            </div>
+
+                            {/* Floating orbital elements for depth */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full -z-10 animate-pulse" />
+                            <div className="absolute top-[10%] right-[20%] w-24 h-24 bg-gradient-to-br from-white/10 to-transparent rounded-xl backdrop-blur-md border border-white/10 shadow-2xl skew-y-12 animate-float" />
+                            <div className="absolute bottom-[20%] left-[10%] w-32 h-32 bg-gradient-to-tr from-gk-accent/10 to-transparent rounded-full backdrop-blur-md border border-white/5 animate-float-delayed" />
                         </div>
                     </div>
                 </motion.div>
